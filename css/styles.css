@@ -2,6 +2,7 @@
     --pageC: rgba(27, 48, 92, 0.945);
     --containerC: rgba(0, 0, 0, 0.2);
 }
+
 * {
     color: white;
 }
@@ -26,9 +27,8 @@
     width: auto;
     border: 3px solid white;
     border-radius: 25px;
-    background-color: rgba(0, 0, 0, 0.2);
+    background-color: var(--containerC);
 }
-
 
 #title {
     display: flex;
@@ -43,6 +43,7 @@ h1 {
     font-size: 2.5rem;
     font-weight: bold;
 }
+
 h2 {
     font-size: 1.75rem;
     font-weight: bold;
@@ -117,6 +118,7 @@ p {
     align-items: center;
     gap: 50px;
 }
+
 #submittedLogs {
     position: relative;
     display: flex;

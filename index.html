@@ -1,45 +1,46 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <title>Performance Report Tracking System</title>
-    <meta name="description" content="This is the description result that shows within the search engine." />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <!--CSS LINKED HERE!-->
-    <link rel="stylesheet" href="./css/reset.css" />
-    <link rel="stylesheet" href="./css/styles.css" />
-  </head>
+<head>
+  <meta charset="UTF-8" />
+  <title>Performance Report Tracking System</title>
+  <meta name="description" content="This is the description result that shows within the search engine." />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- CSS LINKED HERE! -->
+  <link rel="stylesheet" href="./css/reset.css" />
+  <link rel="stylesheet" href="./css/styles.css" />
+</head>
 
-  <!--BODY STARTS HERE!-->
-  <body>
-    <main class="sPC">
-      <div class="entrySection">
-        <div id="title">
-          <h1>Performance Report Tracking System .v1</h1>
-          <h2>(PRTS)</h2>
-          <p>Designed for manager use only.</p>
+<!-- BODY STARTS HERE! -->
+<body>
+  <main class="sPC">
+    <div class="entrySection">
+      <div id="title">
+        <h1>Performance Report Tracking System .v1</h1>
+        <h2>(PRTS)</h2>
+        <p>Designed for manager use only.</p>
+      </div>
+      <form>
+        <div id="em1">
+          <label for="employeeID">Employee Name:</label>
+          <select class="eNameStyle eresult" required>
+            <option class="eNameStyle" value="disabled" disabled selected>Select Employee</option>
+            <option class="eNameStyle" value="4267">Thomas C. (4267)</option>
+            <option class="eNameStyle" value="4349">Karlie S. (4349)</option>
+            <option class="eNameStyle" value="4587">Brenna M. (4587)</option>
+            <option class="eNameStyle" value="4897">Jack D. (4897)</option>
+          </select>
+          <br/>
+          <br/>
+          <div id="employeeInfo">           
+          </div>
         </div>
-        <form>
-          <div id="em1">
-            <label for="employeeID">Employee Name:</label>
-            <select class="eNameStyle eresult" required>
-              <option class="eNameStyle" value="disabled" disabled selected >Select Employee</option>
-              <option class="eNameStyle" value="4267">Thomas C. (4267)</option>
-              <option class="eNameStyle" value="4349">Karlie S. (4349)</option>
-              <option class="eNameStyle" value="4587">Brenna M. (4587)</option>
-              <option class="eNameStyle" value="4897">Jack D. (4897)</option>
-            </select>
-            <br/>
-            <br/>
-            <div id="employeeInfo">           
-            </div>
-        </form>
-      </div>
-      <div class="submittedContainer">
-        <div id="submittedLogs" style="display: none"></div>
-      </div>
-    </main>
-    <!--SCRIPT LINKED HERE!-->
-    <script src="./js/script.js"></script>
-  </body>
+      </form>
+    </div>
+    <div class="submittedContainer">
+      <div id="submittedLogs" style="display: none"></div>
+    </div>
+  </main>
+  <!-- SCRIPT LINKED HERE! -->
+  <script src="./js/script.js"></script>
+</body>
 </html>
