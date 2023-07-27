@@ -15,7 +15,7 @@
     <main class="sPC">
       <div class="entrySection">
         <div id="title">
-          <h1>Performance Report Tracking System</h1>
+          <h1>Performance Report Tracking System .v1</h1>
           <h2>(PRTS)</h2>
           <p>Designed for manager use only.</p>
         </div>
@@ -31,22 +31,14 @@
             </select>
             <br/>
             <br/>
-            <div id="employeeInfo"> 
-            </div>
-            <div id="rating">
-              <h4>Select today's report:</h4>
-              <label for="ratingPR"><input id="ratingPR" type="radio" name="rating" value="Positive" required>Positive (+)</label>
-              <label for="ratingNR"><input id="ratingNR" type="radio" name="rating" value="negative" required>Negative (-)</label>
-                  <div id="reportHere" style="display: none;">
-                      <label for="textInput">Summarize your report:</label>
-                      <textarea type="text" id="textInput" placeholder="Enter in your report." required> </textarea>
-                  </div>
-              </div>          
+            <div id="employeeInfo">           
             </div>
         </form>
       </div>
+      <div class="submittedContainer">
+        <div id="submittedLogs" style="display: none"></div>
+      </div>
     </main>
-
     <!--SCRIPT LINKED HERE!-->
     <script src="./js/script.js"></script>
   </body>

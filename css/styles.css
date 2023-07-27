@@ -1,3 +1,7 @@
+:root {
+    --pageC: rgba(27, 48, 92, 0.945);
+    --containerC: rgba(0, 0, 0, 0.2);
+}
 * {
     color: white;
 }
@@ -5,7 +9,7 @@
 .sPC {
     width: 100%;
     height: 100vh;
-    background-color: rgba(27, 48, 92, 0.945);
+    background-color: var(--pageC);
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -24,6 +28,7 @@
     border-radius: 25px;
     background-color: rgba(0, 0, 0, 0.2);
 }
+
 
 #title {
     display: flex;
@@ -103,4 +108,25 @@ p {
     padding: 5px 10px;
     color: black;
     margin: 5px;
+}
+
+.submittedContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 50px;
+}
+#submittedLogs {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 550px;
+    height: auto;
+    padding: 15px;
+    background-color: var(--containerC);
+    border: 2px solid white;
+    border-radius: 20px;
 }
