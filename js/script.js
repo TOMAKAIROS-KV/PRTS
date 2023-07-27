@@ -1,59 +1,51 @@
-let selectedEmployee = document.querySelector(".eresult");
-let employeeInfo = document.getElementById("employeeInfo");
+const selectedEmployee = document.querySelector(".eresult");
+const employeeInfo = document.getElementById("employeeInfo");
 
-
-var empData;
-
-var employeeData = [
-    {
+const employeeData = [
+  {
     FirstName: "Thomas",
     LastName: "Collins",
     Age: 27,
     Gender: "Male",
-    Occupation: "Cashier", 
+    Occupation: "Cashier",
     Positive: 0,
     Negative: 0,
-    },
-    {
+  },
+  {
     FirstName: "Karlie",
     LastName: "Shay",
     Age: 23,
     Gender: "Female",
     Occupation: "Lead Cashier",
     Positive: 0,
-    Negative: 0,    
-    },
-    {
+    Negative: 0,
+  },
+  {
     FirstName: "Brenna",
     LastName: "Morrison",
     Age: 25,
     Gender: "Female",
     Occupation: "Cashier",
     Positive: 0,
-    Negative: 0,    
-    },
-    {
+    Negative: 0,
+  },
+  {
     FirstName: "Jack",
     LastName: "Daniels",
     Age: 30,
     Gender: "Male",
     Occupation: "Senior Lead Cashier",
     Positive: 0,
-    Negative: 0,    
-    },
+    Negative: 0,
+  },
 ];
-
-var originalPositive;
-var originalNegative;
 
 const employeeReports = {};
 
 function displayEmployeeInfo(i) {
-    empData = employeeData[i];
-    originalPositive = empData.Positive;
-    originalNegative = empData.Negative;
-  
-    employeeInfo.innerHTML = `
+  const empData = employeeData[i];
+
+  employeeInfo.innerHTML = `
     <div id="eData">
       First Name: ${empData.FirstName}<br>
       Last Name: ${empData.LastName}<br>
@@ -63,32 +55,31 @@ function displayEmployeeInfo(i) {
       (+)Reports: ${empData.Positive}<br>
       (-)Reports: ${empData.Negative}<br>
     </div>
-      <div id="rating">
-        <h4>Select today's report:</h4>
-        <label for="ratingPR">
+    <div id="rating">
+      <h4>Select today's report:</h4>
+      <label for="ratingPR">
         <input id="ratingPR" type="radio" name="rating" value="Positive" required>Positive (+)
-        </label>
-        <label for="ratingNR">
+      </label>
+      <label for="ratingNR">
         <input id="ratingNR" type="radio" name="rating" value="Negative" required>Negative (-)
-        </label>
-        <div id="reportHere" style="display: none;">
-          <label for="textInput">Summarize your report:</label>
-          <textarea type="text" id="textInput" placeholder="Enter in your report." required></textarea>
-          <button id="submitBtn" type="submit">Submit</button>
-        </div>
+      </label>
+      <div id="reportHere" style="display: none;">
+        <label for="textInput">Summarize your report:</label>
+        <textarea type="text" id="textInput" placeholder="Enter your report." required></textarea>
+        <button id="submitBtn" type="submit">Submit</button>
       </div>
-      <div id="submittedLogs"></div> <!-- This is where we'll display the submitted logs -->
-    `;
+    </div>
+    <div id="submittedLogs"></div> <!-- This is where we'll display the submitted logs -->
+  `;
 
+  const ratingPR = document.getElementById("ratingPR");
+  const ratingNR = document.getElementById("ratingNR");
+  const reportHere = document.getElementById("reportHere");
+  const submittedLogs = document.getElementById("submittedLogs");
 
-    const ratingPR = document.getElementById("ratingPR");
-    const ratingNR = document.getElementById("ratingNR");
-    const reportHere = document.getElementById("reportHere");
-    const submittedLogs = document.getElementById("submittedLogs");
-  
-    function showReportHere() {
-      reportHere.style.display = "flex";
-    }
+  function showReportHere() {
+    reportHere.style.display = "flex";
+  }
 
   ratingPR.addEventListener("change", showReportHere);
   ratingNR.addEventListener("change", showReportHere);
@@ -97,81 +88,83 @@ function displayEmployeeInfo(i) {
   submittedLogs.innerHTML = `
     <h2>Submitted Reports for ${empData.FirstName} ${empData.LastName}</h2>
     <ul>
-      ${employeeReports[i] ? employeeReports[i].map(
-        (report) => `
-          <li>
-            ${report.date} at ${report.time}: (${report.type}) ${report.report}
-          </li>
-        `
-      ).join('') : "No reports submitted."}
+      ${employeeReports[i]
+        ? employeeReports[i]
+            .map(
+              (report) => `
+                <li>
+                  ${report.date} at ${report.time}: (${report.type}) ${report.report}
+                </li>
+              `
+            )
+            .join("")
+        : "No reports submitted."}
     </ul>
   `;
 
-  var handleSubmit = function (event) {
-    var textInput = document.getElementById("textInput");
-    var reportValue = textInput.value;
+  const submitBtn = document.getElementById("submitBtn");
+  submitBtn.addEventListener("click", (event) => {
+    event.preventDefault();
+
+    const textInput = document.getElementById("textInput");
+    const reportValue = textInput.value;
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString();
     const formattedTime = currentDate.toLocaleTimeString();
-  
-    event.preventDefault();
-  
-    const ratingPR = document.getElementById("ratingPR");
+
     const reportType = ratingPR.checked ? "Positive" : "Negative";
-  
-      if (reportType === "Positive") {
-    empData.Positive += 1;
-  } else if (reportType === "Negative") {
-    empData.Negative += 1;
-  }
+
+    if (reportType === "Positive") {
+      empData.Positive += 1;
+    } else if (reportType === "Negative") {
+      empData.Negative += 1;
+    }
 
     if (!employeeReports[i]) {
-        employeeReports[i] = [];
-      }
-      employeeReports[i].push({
-        date: formattedDate,
-        time: formattedTime,
-        type: reportType,
-        report: reportValue,
-      });
-  
-      submittedLogs.innerHTML = `
-        <h2>Submitted Reports for ${empData.FirstName} ${empData.LastName}</h2>
-        <ul>
-          ${employeeReports[i].map(
+      employeeReports[i] = [];
+    }
+    employeeReports[i].push({
+      date: formattedDate,
+      time: formattedTime,
+      type: reportType,
+      report: reportValue,
+    });
+
+    submittedLogs.innerHTML = `
+      <h2>Submitted Reports for ${empData.FirstName} ${empData.LastName}</h2>
+      <ul>
+        ${employeeReports[i]
+          .map(
             (report) => `
-            <br />
+              <br />
               <li>
                 ${report.date} at ${report.time}: ${report.type === "Positive" ? "(+)" : "(-)"} ${report.report}
               </li>
               <br />
               <hr />
             `
-          ).join('')}
-        </ul>
-      `;
-    };
-
-  const submitBtn = document.getElementById("submitBtn");
-  submitBtn.addEventListener("click", handleSubmit);
+          )
+          .join("")}
+      </ul>
+    `;
+  });
 }
 
+function selectedResult() {
+  const selectedValue = selectedEmployee.value;
+  let i;
 
-var selectedResult = function () {
-    var selectedValue = selectedEmployee.value;
-    var i;
-    
-    if (selectedValue === "4267") {
-        i = 0;
-    } else if (selectedValue === "4349") {
-        i = 1;
-    } else if (selectedValue === "4587") {
-        i = 2;
-    } else if (selectedValue === "4897") {
-        i = 3;
-    }
-    
-    displayEmployeeInfo(i);
+  if (selectedValue === "4267") {
+    i = 0;
+  } else if (selectedValue === "4349") {
+    i = 1;
+  } else if (selectedValue === "4587") {
+    i = 2;
+  } else if (selectedValue === "4897") {
+    i = 3;
+  }
+
+  displayEmployeeInfo(i);
 }
 
 selectedEmployee.addEventListener("change", selectedResult);
