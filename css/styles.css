@@ -131,4 +131,5 @@ p {
     background-color: var(--containerC);
     border: 2px solid white;
     border-radius: 20px;
+    margin: 25px;
 }

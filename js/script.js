@@ -1,6 +1,3 @@
-const selectedEmployee = document.querySelector(".eresult");
-const employeeInfo = document.getElementById("employeeInfo");
-
 const employeeData = [
   {
     FirstName: "Thomas",
@@ -40,7 +37,24 @@ const employeeData = [
   },
 ];
 
+const employeeInfo = document.getElementById("employeeInfo");
 const employeeReports = {};
+
+function selectedResult() {
+  const selectedValue = document.querySelector(".eresult").value;
+  const i = {
+    "4267": 0,
+    "4349": 1,
+    "4587": 2,
+    "4897": 3,
+  }[selectedValue];
+
+  displayEmployeeInfo(i);
+}
+
+function showReportHere() {
+  reportHere.style.display = "flex";
+}
 
 function displayEmployeeInfo(i) {
   const empData = employeeData[i];
@@ -69,22 +83,17 @@ function displayEmployeeInfo(i) {
         <button id="submitBtn" type="submit">Submit</button>
       </div>
     </div>
-    <div id="submittedLogs"></div> <!-- This is where we'll display the submitted logs -->
   `;
 
   const ratingPR = document.getElementById("ratingPR");
   const ratingNR = document.getElementById("ratingNR");
   const reportHere = document.getElementById("reportHere");
   const submittedLogs = document.getElementById("submittedLogs");
-
-  function showReportHere() {
-    reportHere.style.display = "flex";
-  }
+  const textInput = document.getElementById("textInput");
 
   ratingPR.addEventListener("change", showReportHere);
   ratingNR.addEventListener("change", showReportHere);
 
-  submittedLogs.style.display = "block";
   submittedLogs.innerHTML = `
     <h2>Submitted Reports for ${empData.FirstName} ${empData.LastName}</h2>
     <ul>
@@ -92,9 +101,14 @@ function displayEmployeeInfo(i) {
         ? employeeReports[i]
             .map(
               (report) => `
+                <br />
                 <li>
-                  ${report.date} at ${report.time}: (${report.type}) ${report.report}
+                  ${report.date} at ${report.time}: ${
+                    report.type === "Positive" ? "(+)" : "(-)"
+                  } ${report.report}
                 </li>
+                <br />
+                <hr />
               `
             )
             .join("")
@@ -106,7 +120,6 @@ function displayEmployeeInfo(i) {
   submitBtn.addEventListener("click", (event) => {
     event.preventDefault();
 
-    const textInput = document.getElementById("textInput");
     const reportValue = textInput.value;
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString();
@@ -138,7 +151,9 @@ function displayEmployeeInfo(i) {
             (report) => `
               <br />
               <li>
-                ${report.date} at ${report.time}: ${report.type === "Positive" ? "(+)" : "(-)"} ${report.report}
+                ${report.date} at ${report.time}: ${
+                  report.type === "Positive" ? "(+)" : "(-)"
+                } ${report.report}
               </li>
               <br />
               <hr />
@@ -150,21 +165,5 @@ function displayEmployeeInfo(i) {
   });
 }
 
-function selectedResult() {
-  const selectedValue = selectedEmployee.value;
-  let i;
-
-  if (selectedValue === "4267") {
-    i = 0;
-  } else if (selectedValue === "4349") {
-    i = 1;
-  } else if (selectedValue === "4587") {
-    i = 2;
-  } else if (selectedValue === "4897") {
-    i = 3;
-  }
-
-  displayEmployeeInfo(i);
-}
-
+const selectedEmployee = document.querySelector(".eresult");
 selectedEmployee.addEventListener("change", selectedResult);
