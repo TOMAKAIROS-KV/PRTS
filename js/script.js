@@ -115,22 +115,22 @@ function displayEmployeeInfo(i) {
   `;
 
   const submitBtn = document.getElementById("submitBtn");
-  submitBtn.addEventListener("click", (event) => {
-    event.preventDefault();
+  
+  submitBtn.addEventListener("click", (thisevent) => {
+    thisevent.preventDefault();
 
-    const reportValue = textInput.value;
+    
     const currentDate = new Date();
     const formattedDate = currentDate.toLocaleDateString();
     const formattedTime = currentDate.toLocaleTimeString();
-
     const reportType = ratingPR.checked ? "Positive" : "Negative";
     empData[reportType] += 1;
+    const reportValue = textInput.value;
 
 
     if (!employeeReports[i]) {
       employeeReports[i] = [];
     }
-    
     employeeReports[i].push({
       date: formattedDate,
       time: formattedTime,
