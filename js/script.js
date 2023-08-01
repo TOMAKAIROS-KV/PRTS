@@ -53,6 +53,7 @@ function selectedResult() {
 }
 
 function showReportHere() {
+  const reportHere = document.getElementById("reportHere");
   reportHere.style.display = "flex";
 }
 
@@ -86,13 +87,10 @@ function displayEmployeeInfo(i) {
   `;
 
   const ratingPR = document.getElementById("ratingPR");
-  const ratingNR = document.getElementById("ratingNR");
-  const reportHere = document.getElementById("reportHere");
   const submittedLogs = document.getElementById("submittedLogs");
   const textInput = document.getElementById("textInput");
 
   ratingPR.addEventListener("change", showReportHere);
-  ratingNR.addEventListener("change", showReportHere);
 
   submittedLogs.innerHTML = `
     <h2>Submitted Reports for ${empData.FirstName} ${empData.LastName}</h2>
@@ -126,16 +124,13 @@ function displayEmployeeInfo(i) {
     const formattedTime = currentDate.toLocaleTimeString();
 
     const reportType = ratingPR.checked ? "Positive" : "Negative";
+    empData[reportType] += 1;
 
-    if (reportType === "Positive") {
-      empData.Positive += 1;
-    } else if (reportType === "Negative") {
-      empData.Negative += 1;
-    }
 
     if (!employeeReports[i]) {
       employeeReports[i] = [];
     }
+    
     employeeReports[i].push({
       date: formattedDate,
       time: formattedTime,
