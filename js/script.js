@@ -88,10 +88,12 @@ function displayEmployeeInfo(i) {
   `;
 
   const ratingPR = document.getElementById("ratingPR");
+  const ratingNR = document.getElementById("ratingPR");
   const submittedLogs = document.getElementById("submittedLogs");
   const textInput = document.getElementById("textInput");
 
   ratingPR.addEventListener("change", showReportHere);
+  ratingNR.addEventListener("change", showReportHere);
 
   submittedLogs.innerHTML = `
     <h2>Submitted Reports for ${empData.FirstName} ${empData.LastName}</h2>
