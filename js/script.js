@@ -37,8 +37,10 @@ const employeeData = [
   },
 ];
 
-const employeeInfo = document.getElementById("employeeInfo");
-const employeeReports = {};
+
+const selectedEmployee = document.querySelector(".eresult");
+selectedEmployee.addEventListener("change", selectedResult);
+
 
 function selectedResult() {
   const selectedValue = document.querySelector(".eresult").value;
@@ -52,10 +54,9 @@ function selectedResult() {
   displayEmployeeInfo(i);
 }
 
-function showReportHere() {
-  const reportHere = document.getElementById("reportHere");
-  reportHere.style.display = "flex";
-}
+
+const employeeInfo = document.getElementById("employeeInfo");
+const employeeReports = {};
 
 function displayEmployeeInfo(i) {
   const empData = employeeData[i];
@@ -160,5 +161,8 @@ function displayEmployeeInfo(i) {
   });
 }
 
-const selectedEmployee = document.querySelector(".eresult");
-selectedEmployee.addEventListener("change", selectedResult);
+
+function showReportHere() {
+  const reportHere = document.getElementById("reportHere");
+  reportHere.style.display = "flex";
+}
