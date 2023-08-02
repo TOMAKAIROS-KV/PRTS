@@ -88,7 +88,7 @@ function displayEmployeeInfo(i) {
   `;
 
   const ratingPR = document.getElementById("ratingPR");
-  const ratingNR = document.getElementById("ratingPR");
+  const ratingNR = document.getElementById("ratingNR");
   const submittedLogs = document.getElementById("submittedLogs");
   const textInput = document.getElementById("textInput");
 
